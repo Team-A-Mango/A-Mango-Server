@@ -1,11 +1,14 @@
 package com.mango.amango.domain.product;
 
+import com.mango.amango.domain.user.User;
 import com.mango.amango.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -23,5 +26,16 @@ public class Product extends BaseEntity {
     private String description;
 
     private String price;
+
+    @ManyToOne
+    private User user;
+
+    private Integer view;
+
+    private Integer like;
+
+    private LocalDateTime expirTime;
+
+    private Long auctionPrice;
 
 }

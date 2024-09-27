@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
+    driver-class-name: ${DB_DRIVER_CLASS}
     url: ${DB_URL}
     username: ${USERNAME}
     password: ${PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
@@ -15,5 +15,5 @@ spring:
         show_sql: true
         format_sql: true
         hbm2ddl:
-          auto: create
+          auto: update
     show-sql: true
