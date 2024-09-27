@@ -27,7 +27,8 @@ public class User {
 
     private String profile;
 
-    private Long rating = 0L;
+    @Builder.Default
+    private float rating = 0f;
 
     private Integer declaration;
 }
