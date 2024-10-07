@@ -32,7 +32,7 @@ public class Product extends BaseEntity {
 
     private Integer view;
 
-    private Integer like;
+    private Integer likes;
 
     private LocalDateTime expirTime;
 
