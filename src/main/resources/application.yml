@@ -23,3 +23,9 @@ spring:
         hbm2ddl:
           auto: update
     show-sql: true
+
+jwt:
+  access-secret: alksdfhjfhksdafsdklafdlkfdhsjalh
+  refresh-secret: ajfddfhajfdakhfklaslfhkjklslhfakflkd
+  access-expiration: 86400000
+  refresh-expiration: 604800000
