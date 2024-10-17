@@ -1,4 +1,4 @@
-package com.mango.amango.domain.user;
+package com.mango.amango.domain.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +21,9 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String nickname;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private String password;
