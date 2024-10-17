@@ -8,6 +8,12 @@ spring:
     username: ${USERNAME}
     password: ${PASSWORD}
 
+  data:
+    redis:
+      port: ${REDIS_PORT}
+      host: ${REDIS_HOST}
+      password: ${REDIS_PASSWORD}
+
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
