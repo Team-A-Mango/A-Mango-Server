@@ -1,8 +1,8 @@
-package com.mango.amango.global.jwt.util;
+package com.mango.amango.global.security.jwt.util;
 
 import com.mango.amango.global.exception.CustomErrorCode;
 import com.mango.amango.global.exception.CustomException;
-import com.mango.amango.global.jwt.TokenStatus;
+import com.mango.amango.global.security.jwt.TokenStatus;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

@@ -1,9 +1,8 @@
-package com.mango.amango.global.jwt.service;
+package com.mango.amango.global.security;
 
 import com.mango.amango.domain.user.repository.UserRepository;
 import com.mango.amango.global.exception.CustomErrorCode;
 import com.mango.amango.global.exception.CustomException;
-import com.mango.amango.global.jwt.entity.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

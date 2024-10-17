@@ -1,4 +1,4 @@
-package com.mango.amango.global.jwt.configs;
+package com.mango.amango.global.security.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

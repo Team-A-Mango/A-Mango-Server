@@ -1,9 +1,9 @@
-package com.mango.amango.global.jwt.configs;
+package com.mango.amango.global.security.configs;
 
 import com.mango.amango.domain.user.service.UserService;
 import com.mango.amango.global.exception.filter.CustomExceptionFilter;
-import com.mango.amango.global.jwt.filter.JwtAuthenticationFilter;
-import com.mango.amango.global.jwt.service.JwtService;
+import com.mango.amango.global.security.jwt.filter.JwtAuthenticationFilter;
+import com.mango.amango.global.security.jwt.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

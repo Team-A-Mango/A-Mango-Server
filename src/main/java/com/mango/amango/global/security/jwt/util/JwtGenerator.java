@@ -1,4 +1,4 @@
-package com.mango.amango.global.jwt.util;
+package com.mango.amango.global.security.jwt.util;
 
 import com.mango.amango.domain.user.entity.User;
 import io.jsonwebtoken.Jwts;

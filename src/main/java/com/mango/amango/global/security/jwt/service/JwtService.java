@@ -1,4 +1,4 @@
-package com.mango.amango.global.jwt.service;
+package com.mango.amango.global.security.jwt.service;
 
 import com.mango.amango.domain.auth.entity.RefreshToken;
 import com.mango.amango.domain.auth.entity.dto.response.TokenRes;
@@ -6,10 +6,11 @@ import com.mango.amango.domain.auth.repository.RefreshTokenRepository;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.global.exception.CustomErrorCode;
 import com.mango.amango.global.exception.CustomException;
-import com.mango.amango.global.jwt.JwtRule;
-import com.mango.amango.global.jwt.TokenStatus;
-import com.mango.amango.global.jwt.util.JwtGenerator;
-import com.mango.amango.global.jwt.util.JwtUtil;
+import com.mango.amango.global.security.CustomUserDetailService;
+import com.mango.amango.global.security.jwt.JwtRule;
+import com.mango.amango.global.security.jwt.TokenStatus;
+import com.mango.amango.global.security.jwt.util.JwtGenerator;
+import com.mango.amango.global.security.jwt.util.JwtUtil;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;

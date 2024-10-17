@@ -1,4 +1,4 @@
-package com.mango.amango.global.jwt.entity;
+package com.mango.amango.global.security;
 
 import com.mango.amango.domain.user.entity.Role;
 import com.mango.amango.domain.user.entity.User;

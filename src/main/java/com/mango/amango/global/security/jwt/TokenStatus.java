@@ -1,4 +1,4 @@
-package com.mango.amango.global.jwt;
+package com.mango.amango.global.security.jwt;
 
 public enum TokenStatus {
     AUTHENTICATED,

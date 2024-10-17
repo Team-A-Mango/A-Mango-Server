@@ -1,8 +1,8 @@
-package com.mango.amango.global.jwt.filter;
+package com.mango.amango.global.security.jwt.filter;
 
 import com.mango.amango.domain.user.service.UserService;
-import com.mango.amango.global.jwt.JwtRule;
-import com.mango.amango.global.jwt.service.JwtService;
+import com.mango.amango.global.security.jwt.JwtRule;
+import com.mango.amango.global.security.jwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
