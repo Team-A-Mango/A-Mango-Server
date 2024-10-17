@@ -1,6 +1,6 @@
 package com.mango.amango.domain.product;
 
-import com.mango.amango.domain.user.User;
+import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
