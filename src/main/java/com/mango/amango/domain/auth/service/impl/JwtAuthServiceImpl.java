@@ -27,7 +27,7 @@ public class JwtAuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public TokenRes login(LoginReq request, HttpServletResponse response) {
+    public TokenRes signIn(LoginReq request, HttpServletResponse response) {
         User reqeustUser = userService.findUserByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getPassword(), reqeustUser.getPassword())) {
