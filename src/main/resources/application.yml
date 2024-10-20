@@ -8,6 +8,12 @@ spring:
     username: ${USERNAME}
     password: ${PASSWORD}
 
+  data:
+    redis:
+      port: ${REDIS_PORT}
+      host: ${REDIS_HOST}
+      password: ${REDIS_PASSWORD}
+
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
@@ -17,3 +23,9 @@ spring:
         hbm2ddl:
           auto: update
     show-sql: true
+
+jwt:
+  access-secret: ${ACCESS_SECRET}
+  refresh-secret: ${REFRESH_SECRET}
+  access-expiration: 86400000
+  refresh-expiration: 604800000
