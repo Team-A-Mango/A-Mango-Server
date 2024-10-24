@@ -1,4 +1,4 @@
-package com.mango.amango.domain.eamil;
+package com.mango.amango.domain.eamil.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Email {
+public class EmailCertificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,4 +24,6 @@ public class Email {
     private LocalDateTime expirTime;
 
     private Boolean authentication;
+
+    private String email;
 }
