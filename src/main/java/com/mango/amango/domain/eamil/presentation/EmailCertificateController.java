@@ -2,7 +2,6 @@ package com.mango.amango.domain.eamil.presentation;
 
 import com.mango.amango.domain.eamil.presentation.dto.req.EmailSendReq;
 import com.mango.amango.domain.eamil.service.EmailSendService;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,7 @@ public class EmailCertificateController {
     private final EmailSendService emailSendService;
 
     @PostMapping
-    public ResponseEntity<Void> sendEmail (@RequestBody EmailSendReq email) throws MessagingException {
+    public ResponseEntity<Void> sendEmail (@RequestBody EmailSendReq email){
         emailSendService.execute(email);
         return ResponseEntity.ok().build();
     }
