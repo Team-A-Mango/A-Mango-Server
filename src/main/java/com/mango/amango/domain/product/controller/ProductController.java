@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/product")
@@ -24,7 +26,7 @@ public class ProductController {
             @Size(max = 3, message = "이미지는 최대 3장까지 입니다.") @RequestPart("images") List<MultipartFile> images
     ) {
         productService.createProduct(request, images);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(CREATED).build();
     }
 
 }
