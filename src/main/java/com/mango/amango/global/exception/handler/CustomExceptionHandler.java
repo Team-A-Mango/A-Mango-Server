@@ -5,12 +5,16 @@ import com.mango.amango.global.exception.CustomException;
 import com.mango.amango.global.exception.CustomErrorRes;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
+
+import java.util.Objects;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -37,18 +41,34 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomErrorRes> methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        CustomErrorRes response = CustomErrorRes.builder()
-                .status(CustomErrorCode.VALIDATION_FAILED)
-                .statusMessage(getErrorMessage(e))
-                .build();
-
-        return ResponseEntity.status(BAD_REQUEST).body(response);
-    }
-
-    private String getErrorMessage(MethodArgumentNotValidException e) {
-        return e.getBindingResult().getFieldErrors().stream()
+        String errorMessage = e.getBindingResult().getFieldErrors().stream()
                 .findFirst()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .orElse("유효성 검사에 실패했습니다.");
+
+        return getErrorResponse(errorMessage);
+    }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<CustomErrorRes> handlerMethodValidationException(HandlerMethodValidationException e) {
+        String errorMessage = e.getAllValidationResults()   .stream()
+                .findFirst()
+                .map(valueResult -> valueResult.getResolvableErrors().stream()
+                        .map(MessageSourceResolvable::getDefaultMessage)
+                        .filter(Objects::nonNull)
+                        .findFirst()
+                        .orElse("유효성 검사에 실패했습니다."))
+                .orElse("유효성 검사에 실패했습니다.");
+
+        return getErrorResponse(errorMessage);
+    }
+
+    private ResponseEntity<CustomErrorRes> getErrorResponse(String errorMessage) {
+        CustomErrorRes response = CustomErrorRes.builder()
+                .status(CustomErrorCode.VALIDATION_FAILED)
+                .statusMessage(errorMessage)
+                .build();
+
+        return ResponseEntity.status(BAD_REQUEST).body(response);
     }
 }
