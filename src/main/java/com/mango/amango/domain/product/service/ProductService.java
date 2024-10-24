@@ -27,16 +27,16 @@ public class ProductService {
     public void createProduct(CreateProductReq request, List<MultipartFile> images) {
 
         Product product = Product.builder()
-                .title(request.getTitle())
-                .description(request.getDescription())
-                .price(request.getPrice())
+                .title(request.title())
+                .description(request.description())
+                .price(request.price())
                 .user(userService.getCurrentUser())
-                .expirTime(request.getExpirTime())
-                .auctionPrice(request.getAuctionPrice())
+                .expirTime(request.expirTime())
+                .auctionPrice(request.auctionPrice())
                 .build();
 
         productRepository.save(product);
-        tagService.saveTag(product, request.getTags());
+        tagService.saveTag(product, request.tags());
         imageService.saveImage(product, images);
     }
 }
