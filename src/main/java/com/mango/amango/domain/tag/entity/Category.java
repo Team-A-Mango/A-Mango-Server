@@ -1,4 +1,4 @@
-package com.mango.amango.domain.tag;
+package com.mango.amango.domain.tag.entity;
 
 public enum Category {
     DISPOSABLES,
