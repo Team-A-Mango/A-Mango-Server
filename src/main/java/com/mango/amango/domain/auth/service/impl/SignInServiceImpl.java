@@ -25,9 +25,9 @@ public class SignInServiceImpl implements SignInService {
 
     @Override
     public TokenRes signIn(LoginReq request, HttpServletResponse response) {
-        User reqeustUser = userService.findUserByEmail(request.getEmail());
+        User reqeustUser = userService.findUserByEmail(request.email());
 
-        if (!passwordEncoder.matches(request.getPassword(), reqeustUser.getPassword())) {
+        if (!passwordEncoder.matches(request.password(), reqeustUser.getPassword())) {
             throw new CustomException(CustomErrorCode.INVALID_PASSWORD);
         }
 

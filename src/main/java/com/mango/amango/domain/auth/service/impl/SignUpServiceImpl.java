@@ -23,9 +23,9 @@ public class SignUpServiceImpl implements SignUpService {
         //TODO 이메일 인증
 
         userService.saveUser(User.builder()
-                .email(request.getEmail())
-                .nickname(request.getNickName())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .email(request.email())
+                .nickname(request.nickName())
+                .password(passwordEncoder.encode(request.password()))
                 .build()
         );
     }
