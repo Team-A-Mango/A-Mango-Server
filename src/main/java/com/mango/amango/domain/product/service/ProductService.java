@@ -1,6 +1,5 @@
 package com.mango.amango.domain.product.service;
 
-import com.mango.amango.domain.image.service.ImageService;
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.entity.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
@@ -21,7 +20,6 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final UserService userService;
     private final TagService tagService;
-    private final ImageService imageService;
 
 
     public void createProduct(CreateProductReq request, List<MultipartFile> images) {
@@ -37,6 +35,5 @@ public class ProductService {
 
         productRepository.save(product);
         tagService.saveTag(product, request.tags());
-        imageService.saveImage(product, images);
     }
 }
