@@ -1,8 +1,9 @@
-package com.mango.amango.domain.product.service;
+package com.mango.amango.domain.product.service.impl;
 
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.entity.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
+import com.mango.amango.domain.product.service.CreateProductService;
 import com.mango.amango.domain.tag.service.TagService;
 import com.mango.amango.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,13 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ProductService {
+public class CreateProductServiceImpl implements CreateProductService {
 
     private final ProductRepository productRepository;
     private final UserService userService;
     private final TagService tagService;
 
-
+    @Override
     public void createProduct(CreateProductReq request, List<MultipartFile> images) {
 
         Product product = Product.builder()
