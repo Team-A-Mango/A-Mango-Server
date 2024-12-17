@@ -1,6 +1,6 @@
 package com.mango.amango.domain.auth.service.impl;
 
-import com.mango.amango.domain.auth.entity.dto.response.TokenRes;
+import com.mango.amango.domain.auth.presentation.dto.response.TokenRes;
 import com.mango.amango.domain.auth.service.ReissueTokenService;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;

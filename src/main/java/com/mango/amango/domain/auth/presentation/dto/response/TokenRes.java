@@ -1,4 +1,4 @@
-package com.mango.amango.domain.auth.entity.dto.response;
+package com.mango.amango.domain.auth.presentation.dto.response;
 
 import lombok.Builder;
 
