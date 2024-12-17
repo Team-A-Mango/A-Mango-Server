@@ -13,6 +13,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,9 +28,12 @@ public class AuthController {
     private final ReissueTokenService reissueTokenService;
 
     @PostMapping
-    public ResponseEntity<Void> signUp(@Valid @RequestBody SignUpReq request) {
-        signUpService.signUp(request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> signUp(
+            @Valid @RequestPart("request") SignUpReq request,
+            @RequestPart("image") MultipartFile image
+    ) {
+        signUpService.signUp(request, image);
+        return ResponseEntity.status(CREATED).build();
     }
 
     @PostMapping("/login")
