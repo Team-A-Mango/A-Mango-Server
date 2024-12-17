@@ -5,6 +5,13 @@ import com.mango.amango.domain.inquiry.presentation.dto.request.CreateInquiryReq
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.user.entity.User;
 
-public interface InquiryConverter {
-    Inquiry toEntity (CreateInquiryReq req, Product product, User user);
+public abstract class InquiryConverter {
+
+    public static Inquiry toEntity(CreateInquiryReq req, Product product, User user) {
+        return Inquiry.builder()
+                .content(req.content())
+                .product(product)
+                .user(user)
+                .build();
+    }
 }

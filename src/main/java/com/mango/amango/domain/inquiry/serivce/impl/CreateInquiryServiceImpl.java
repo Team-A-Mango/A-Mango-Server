@@ -21,7 +21,6 @@ public class CreateInquiryServiceImpl implements CreateInquiryService {
 
     private final ProductRepository productRepository;
     private final UserService userService;
-    private final InquiryConverter inquiryConverter;
     private final InquiryRepository inquiryRepository;
 
     public void execute(CreateInquiryReq req, Long productId) {
@@ -30,7 +29,7 @@ public class CreateInquiryServiceImpl implements CreateInquiryService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(NotFoundProductException::new);
 
-        Inquiry inquiry = inquiryConverter.toEntity(req,product,user);
+        Inquiry inquiry = InquiryConverter.toEntity(req,product,user);
 
         inquiryRepository.save(inquiry);
     }
