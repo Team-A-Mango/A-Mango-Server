@@ -1,5 +1,7 @@
 package com.mango.amango.global.file.s3;
 
+import com.mango.amango.global.exception.CustomErrorCode;
+import com.mango.amango.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,22 +27,30 @@ public class S3ClientService {
     private String bucket;
     private final S3Client s3Client;
 
-    public String upload(MultipartFile multipartFile) throws IOException {
+    public String upload(MultipartFile multipartFile) {
+        try {
+            if (multipartFile.isEmpty()) {
+                return null;
+            }
 
-        String randomName = UUID.randomUUID().toString();
-        String fileName = DIR_NAME + "/" + randomName;
-        String contentType = getFileContentType(multipartFile);
+            String randomName = UUID.randomUUID().toString();
+            String fileName = DIR_NAME + "/" + randomName;
+            String contentType = getFileContentType(multipartFile);
 
-        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .bucket(bucket)
-                .key(fileName)
-                .acl(ObjectCannedACL.PUBLIC_READ)
-                .contentType(contentType)
-                .contentLength(multipartFile.getSize())
-                .build();
-        s3Client.putObject(putObjectRequest, RequestBody.fromBytes(multipartFile.getBytes()));
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucket)
+                    .key(fileName)
+                    .acl(ObjectCannedACL.PUBLIC_READ)
+                    .contentType(contentType)
+                    .contentLength(multipartFile.getSize())
+                    .build();
+            s3Client.putObject(putObjectRequest, RequestBody.fromBytes(multipartFile.getBytes()));
 
-        GetUrlRequest request = GetUrlRequest.builder().bucket(bucket).key(fileName).build();
-        return s3Client.utilities().getUrl(request).toString();
+            GetUrlRequest request = GetUrlRequest.builder().bucket(bucket).key(fileName).build();
+            return s3Client.utilities().getUrl(request).toString();
+
+        } catch (IOException e) {
+            throw new CustomException(CustomErrorCode.FILE_PROCESSING_ERROR);
+        }
     }
 }

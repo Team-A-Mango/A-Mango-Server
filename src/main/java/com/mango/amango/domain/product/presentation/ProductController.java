@@ -8,7 +8,6 @@ import com.mango.amango.domain.product.service.CreateProductService;
 import com.mango.amango.domain.product.service.GetProductService;
 import com.mango.amango.domain.product.service.FindAllProductService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +30,9 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Void> createProduct(
             @Valid @RequestPart("request") CreateProductReq request,
-            @Size(max = 3, message = "이미지는 최대 3장까지 입니다.") @RequestPart("images") List<MultipartFile> images
+            @RequestPart("images") MultipartFile image
     ) {
-        createProductService.createProduct(request, images);
+        createProductService.createProduct(request, image);
         return ResponseEntity.status(CREATED).build();
     }
 

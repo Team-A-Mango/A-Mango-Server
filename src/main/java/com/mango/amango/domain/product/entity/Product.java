@@ -27,6 +27,8 @@ public class Product extends BaseEntity {
 
     private Long price;
 
+    private String imageUrl;
+
     @ManyToOne
     private User user;
 
