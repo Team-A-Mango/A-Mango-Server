@@ -13,6 +13,7 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 
 import static com.mango.amango.global.file.ImageUtil.*;
@@ -27,10 +28,10 @@ public class S3ClientService {
     private String bucket;
     private final S3Client s3Client;
 
-    public String upload(MultipartFile multipartFile) {
+    public Optional<String> upload(MultipartFile multipartFile, ObjectCannedACL acl) {
         try {
             if (multipartFile.isEmpty()) {
-                return null;
+                return Optional.empty();
             }
 
             String randomName = UUID.randomUUID().toString();
@@ -40,14 +41,14 @@ public class S3ClientService {
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucket)
                     .key(fileName)
-                    .acl(ObjectCannedACL.PUBLIC_READ)
+                    .acl(acl)
                     .contentType(contentType)
                     .contentLength(multipartFile.getSize())
                     .build();
             s3Client.putObject(putObjectRequest, RequestBody.fromBytes(multipartFile.getBytes()));
 
             GetUrlRequest request = GetUrlRequest.builder().bucket(bucket).key(fileName).build();
-            return s3Client.utilities().getUrl(request).toString();
+            return Optional.of(s3Client.utilities().getUrl(request).toString());
 
         } catch (IOException e) {
             throw new CustomException(CustomErrorCode.FILE_PROCESSING_ERROR);

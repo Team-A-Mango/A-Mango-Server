@@ -28,6 +28,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    private String faceImageUrl;
+
     private String profile;
 
     @Builder.Default
