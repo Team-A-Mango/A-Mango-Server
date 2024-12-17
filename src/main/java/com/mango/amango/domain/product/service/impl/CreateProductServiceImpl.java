@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import static software.amazon.awssdk.services.s3.model.ObjectCannedACL.*;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class CreateProductServiceImpl implements CreateProductService {
                 .title(request.title())
                 .description(request.description())
                 .price(request.price())
-                .imageUrl(s3ClientService.upload(image))
+                .imageUrl(s3ClientService.upload(image, PUBLIC_READ).orElse(null))
                 .user(userService.getCurrentUser())
                 .build());
     }
