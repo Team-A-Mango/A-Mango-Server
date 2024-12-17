@@ -17,7 +17,9 @@ public enum CustomErrorCode {
     FILE_PROCESSING_ERROR(HttpStatus.BAD_REQUEST, "처리 할 수 없는 파일입니다."),
     MAIL_DELIVERY_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "매일 전송을 실패하였습니다."),
 
-    NOT_FOUND_PRODUCT(HttpStatus.NOT_FOUND,"해당 상품을 찾을 수 없습니다.")
+    NOT_FOUND_PRODUCT(HttpStatus.NOT_FOUND,"해당 상품을 찾을 수 없습니다."),
+
+    PRODUCT_ALREADY_TRADED(HttpStatus.BAD_REQUEST, "이미 거래된 상품입니다.")
     ;
 
     private final HttpStatus statusCode;
