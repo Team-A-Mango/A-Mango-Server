@@ -1,6 +1,6 @@
-package com.mango.amango.domain.tag;
+package com.mango.amango.domain.tag.entity;
 
-import com.mango.amango.domain.product.Product;
+import com.mango.amango.domain.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

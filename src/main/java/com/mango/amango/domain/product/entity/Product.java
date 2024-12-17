@@ -1,4 +1,4 @@
-package com.mango.amango.domain.product;
+package com.mango.amango.domain.product.entity;
 
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.global.entity.BaseEntity;
@@ -25,17 +25,12 @@ public class Product extends BaseEntity {
 
     private String description;
 
-    private String price;
+    private Long price;
 
     @ManyToOne
     private User user;
 
-    private Integer view;
-
-    private Integer likes;
-
-    private LocalDateTime expirTime;
-
-    private Long auctionPrice;
+    @Builder.Default
+    private Integer likes = 0;
 
 }

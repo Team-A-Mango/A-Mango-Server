@@ -11,10 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.mango.amango.domain.user.entity.Role.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(DELETE, "/auth").authenticated()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(POST, "/email").permitAll()
+                        .requestMatchers(POST, "/product").hasAuthority(USER.getKey())
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
