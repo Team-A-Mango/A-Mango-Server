@@ -4,9 +4,11 @@ import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 
+import java.util.List;
+
 public abstract class ProductConverter {
 
-    public static GetProductRes toGetProductRes(Product product) {
+    public static GetProductRes toGetProductRes(Product product, List<GetProductRes.GetInquiry> inquiries) {
         return GetProductRes.builder()
                 .productId(product.getId())
                 .title(product.getTitle())
@@ -15,6 +17,7 @@ public abstract class ProductConverter {
                 .author(product.getUser().getNickname())
                 .profileImg(product.getUser().getProfile())
                 .imageUrl(product.getImageUrl())
+                .inquiries(inquiries)
                 .build();
     }
 
