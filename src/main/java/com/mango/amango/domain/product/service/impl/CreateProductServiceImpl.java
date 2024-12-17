@@ -5,7 +5,6 @@ import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.CreateProductService;
-import com.mango.amango.domain.tag.service.impl.SaveTagServiceImpl;
 import com.mango.amango.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ public class CreateProductServiceImpl implements CreateProductService {
 
     private final ProductRepository productRepository;
     private final UserService userService;
-    private final SaveTagServiceImpl saveTagService;
     private final ImageUploadService imageUploadService;
 
     @Override
@@ -35,7 +33,6 @@ public class CreateProductServiceImpl implements CreateProductService {
                 .build();
 
         productRepository.save(product);
-        saveTagService.saveTag(product, request.tags());
         imageUploadService.saveImage(product, images);
     }
 }

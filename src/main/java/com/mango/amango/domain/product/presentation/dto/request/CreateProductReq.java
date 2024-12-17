@@ -1,10 +1,7 @@
 package com.mango.amango.domain.product.presentation.dto.request;
 
-import com.mango.amango.domain.tag.entity.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import java.util.List;
 
 public record CreateProductReq(
         @NotBlank(message = "제목은 비어 있을 수 없습니다.")
@@ -14,11 +11,7 @@ public record CreateProductReq(
         String description,
 
         @NotNull(message = "가격은 필수 입력 값 입니다.")
-        Long price,
-
-        @NotNull(message = "태그는 필수 입력 값 입니다.")
-        @Size(min = 1, message = "태그는 최소 1개 이상 포함되어야 합니다.")
-        List<Category> tags
+        Long price
 ) {
 
 }
