@@ -19,10 +19,7 @@ public record CreateProductReq(
 
         @NotNull(message = "태그는 필수 입력 값 입니다.")
         @Size(min = 1, message = "태그는 최소 1개 이상 포함되어야 합니다.")
-        List<Category> tags,
-
-        @NotNull(message = "시간은 필수 입력 값 입니다.")
-        LocalDateTime expirTime
+        List<Category> tags
 ) {
 
 }

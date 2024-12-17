@@ -31,13 +31,6 @@ public class Product extends BaseEntity {
     private User user;
 
     @Builder.Default
-    private Integer view = 0;
-
-    @Builder.Default
     private Integer likes = 0;
-
-    private LocalDateTime expirTime;
-
-    private Long auctionPrice;
 
 }

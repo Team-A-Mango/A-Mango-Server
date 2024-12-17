@@ -32,7 +32,6 @@ public class CreateProductServiceImpl implements CreateProductService {
                 .description(request.description())
                 .price(request.price())
                 .user(userService.getCurrentUser())
-                .expirTime(request.expirTime())
                 .build();
 
         productRepository.save(product);
