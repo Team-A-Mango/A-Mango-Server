@@ -1,8 +1,8 @@
-package com.mango.amango.domain.auth.controller;
+package com.mango.amango.domain.auth.presentation;
 
-import com.mango.amango.domain.auth.entity.dto.request.LoginReq;
-import com.mango.amango.domain.auth.entity.dto.request.SignUpReq;
-import com.mango.amango.domain.auth.entity.dto.response.TokenRes;
+import com.mango.amango.domain.auth.presentation.dto.request.LoginReq;
+import com.mango.amango.domain.auth.presentation.dto.request.SignUpReq;
+import com.mango.amango.domain.auth.presentation.dto.response.TokenRes;
 import com.mango.amango.domain.auth.service.LogoutService;
 import com.mango.amango.domain.auth.service.ReissueTokenService;
 import com.mango.amango.domain.auth.service.SignInService;

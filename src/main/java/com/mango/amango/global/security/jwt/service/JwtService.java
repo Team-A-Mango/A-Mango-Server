@@ -1,7 +1,7 @@
 package com.mango.amango.global.security.jwt.service;
 
 import com.mango.amango.domain.auth.entity.RefreshToken;
-import com.mango.amango.domain.auth.entity.dto.response.TokenRes;
+import com.mango.amango.domain.auth.presentation.dto.response.TokenRes;
 import com.mango.amango.domain.auth.repository.RefreshTokenRepository;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.global.exception.CustomErrorCode;

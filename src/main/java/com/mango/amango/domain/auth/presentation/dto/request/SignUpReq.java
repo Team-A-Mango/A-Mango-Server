@@ -1,4 +1,4 @@
-package com.mango.amango.domain.auth.entity.dto.request;
+package com.mango.amango.domain.auth.presentation.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
