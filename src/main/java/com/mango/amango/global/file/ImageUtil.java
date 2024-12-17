@@ -18,9 +18,7 @@ public abstract class ImageUtil {
     public static String getFileContentType(MultipartFile multipartFile) {
         String fileName = multipartFile.getOriginalFilename();
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-        System.out.println(extension);
         String contentType = EXTENTION_TO_MIME_MAP.get(extension);
-        System.out.println(contentType);
         if (contentType == null) {
             throw new CustomException(CustomErrorCode.FILE_PROCESSING_ERROR);
         }
