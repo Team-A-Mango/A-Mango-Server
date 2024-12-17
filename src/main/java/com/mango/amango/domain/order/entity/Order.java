@@ -1,4 +1,4 @@
-package com.mango.amango.domain.order;
+package com.mango.amango.domain.order.entity;
 
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.user.entity.User;
