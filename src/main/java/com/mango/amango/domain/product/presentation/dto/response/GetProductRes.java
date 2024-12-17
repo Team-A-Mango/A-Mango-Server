@@ -2,6 +2,8 @@ package com.mango.amango.domain.product.presentation.dto.response;
 
 import lombok.Builder;
 
+import java.util.List;
+
 @Builder
 public record GetProductRes (
         Long productId,
@@ -10,6 +12,14 @@ public record GetProductRes (
         Long price,
         String author,
         String imageUrl,
-        String profileImg
+        String profileImg,
+        List<GetInquiry> inquiries
 ) {
+    @Builder
+    public record GetInquiry(
+            String content,
+            String author,
+            String profileImag
+    ) {
+    }
 }
