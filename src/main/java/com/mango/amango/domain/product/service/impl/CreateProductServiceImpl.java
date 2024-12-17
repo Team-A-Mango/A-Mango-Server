@@ -1,10 +1,11 @@
 package com.mango.amango.domain.product.service.impl;
 
+import com.mango.amango.domain.image.service.ImageUploadService;
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.entity.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.CreateProductService;
-import com.mango.amango.domain.tag.service.TagService;
+import com.mango.amango.domain.tag.service.impl.SaveTagServiceImpl;
 import com.mango.amango.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class CreateProductServiceImpl implements CreateProductService {
 
     private final ProductRepository productRepository;
     private final UserService userService;
-    private final TagService tagService;
+    private final SaveTagServiceImpl saveTagService;
+    private final ImageUploadService imageUploadService;
 
     @Override
     public void createProduct(CreateProductReq request, List<MultipartFile> images) {
@@ -31,10 +33,10 @@ public class CreateProductServiceImpl implements CreateProductService {
                 .price(request.price())
                 .user(userService.getCurrentUser())
                 .expirTime(request.expirTime())
-                .auctionPrice(request.auctionPrice())
                 .build();
 
         productRepository.save(product);
-        tagService.saveTag(product, request.tags());
+        saveTagService.saveTag(product, request.tags());
+        imageUploadService.saveImage(product, images);
     }
 }
