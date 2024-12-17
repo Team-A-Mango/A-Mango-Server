@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(POST, "/email").permitAll()
                         .requestMatchers(POST, "/product").hasAuthority(USER.getKey())
+                        .requestMatchers(GET, "/product").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
