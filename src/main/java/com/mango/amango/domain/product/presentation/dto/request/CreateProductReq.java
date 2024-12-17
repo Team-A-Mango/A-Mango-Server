@@ -4,7 +4,6 @@ import com.mango.amango.domain.tag.entity.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public record CreateProductReq(

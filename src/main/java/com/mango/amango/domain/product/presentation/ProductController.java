@@ -2,8 +2,10 @@ package com.mango.amango.domain.product.presentation;
 
 import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
+import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.service.CreateProductService;
 import com.mango.amango.domain.product.service.GetProductService;
+import com.mango.amango.domain.product.service.FindAllProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class ProductController {
 
     public final CreateProductService createProductService;
     public final GetProductService getProductService;
+    public final FindAllProductService findAllProductService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -37,4 +40,11 @@ public class ProductController {
         GetProductRes res = getProductService.execute(productId);
         return ResponseEntity.ok(res);
     }
+    @GetMapping
+    public ResponseEntity<List<FindAllProductRes>> findAllProducts() {
+        List<FindAllProductRes> res = findAllProductService.execute();
+        return ResponseEntity.ok(res);
+
+    }
+
 }

@@ -16,12 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class GetProductServiceImpl implements GetProductService {
 
     private final ProductRepository productRepository;
-    private final ProductConverter productConverter;
 
     public GetProductRes execute(Long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(NotFoundProductException::new);
 
-        return productConverter.toDto(product);
+        return ProductConverter.toDto(product);
     }
 }
