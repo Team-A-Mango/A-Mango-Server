@@ -37,7 +37,9 @@ public class SecurityConfig {
 
                         .requestMatchers(DELETE, "/auth").authenticated()
                         .requestMatchers(POST, "/product").authenticated()
-                        .requestMatchers(GET, "/product").authenticated()
+                        .requestMatchers(GET, "/product/{productId}").authenticated()
+
+                        .requestMatchers(POST, "/inquiry/{productId}").authenticated()
                         .anyRequest().authenticated()
 
                 )
