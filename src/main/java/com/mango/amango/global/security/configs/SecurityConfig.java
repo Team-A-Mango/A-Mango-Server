@@ -7,6 +7,7 @@ import com.mango.amango.global.security.jwt.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -31,11 +32,14 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(DELETE, "/auth").authenticated()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(POST, "/email").permitAll()
-                        .requestMatchers(POST, "/product").hasAuthority(USER.getKey())
+
+                        .requestMatchers(DELETE, "/auth").authenticated()
+                        .requestMatchers(POST, "/product").authenticated()
+                        .requestMatchers(GET, "/product").authenticated()
                         .anyRequest().authenticated()
+
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)

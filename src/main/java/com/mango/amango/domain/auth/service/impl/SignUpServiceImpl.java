@@ -1,6 +1,6 @@
 package com.mango.amango.domain.auth.service.impl;
 
-import com.mango.amango.domain.auth.entity.dto.request.SignUpReq;
+import com.mango.amango.domain.auth.presentation.dto.request.SignUpReq;
 import com.mango.amango.domain.auth.service.SignUpService;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;

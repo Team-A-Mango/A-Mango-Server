@@ -2,7 +2,7 @@ package com.mango.amango.domain.product.service.impl;
 
 import com.mango.amango.domain.image.service.ImageUploadService;
 import com.mango.amango.domain.product.entity.Product;
-import com.mango.amango.domain.product.entity.dto.request.CreateProductReq;
+import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.CreateProductService;
 import com.mango.amango.domain.tag.service.impl.SaveTagServiceImpl;
