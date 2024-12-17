@@ -6,7 +6,6 @@ import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.FindAllProductService;
-import com.mango.amango.domain.product.util.ProductConverter;
 import com.mango.amango.domain.tag.entity.Tag;
 import com.mango.amango.domain.tag.service.FindAllTagService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.mango.amango.domain.product.util.ProductConverter.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -31,6 +32,6 @@ public class FindAllProductServiceImpl implements FindAllProductService {
         List<Tag> tags = findAllTagService.execute();
 
         return products.stream().map((product) ->
-                    ProductConverter.toDto(product, images, tags)).toList();
+                toDto(product, images, tags)).toList();
     }
 }
