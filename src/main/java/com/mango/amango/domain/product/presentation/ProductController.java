@@ -1,7 +1,9 @@
-package com.mango.amango.domain.product.controller;
+package com.mango.amango.domain.product.presentation;
 
-import com.mango.amango.domain.product.entity.dto.request.CreateProductReq;
+import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
+import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.service.CreateProductService;
+import com.mango.amango.domain.product.service.FindAllProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import static org.springframework.http.HttpStatus.*;
 public class ProductController {
 
     public final CreateProductService createProductService;
+    public final FindAllProductService findAllProductService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -27,6 +30,13 @@ public class ProductController {
     ) {
         createProductService.createProduct(request, images);
         return ResponseEntity.status(CREATED).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FindAllProductRes>> findAllProducts() {
+        List<FindAllProductRes> res = findAllProductService.execute();
+        return ResponseEntity.ok(res);
+
     }
 
 }
