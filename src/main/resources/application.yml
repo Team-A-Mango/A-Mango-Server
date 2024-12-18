@@ -37,3 +37,9 @@ cloud:
     region: ${S3_REGION}
     S3:
       bucket: ${S3_BUCKET_NAME}
+
+coolsms:
+  api:
+    key: ${SMS_KEY}
+    secret: ${SMS_SECRET_KEY}
+    phoneNumber: ${SMS_PHONE_NUMBER}
