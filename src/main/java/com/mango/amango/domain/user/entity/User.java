@@ -32,6 +32,8 @@ public class User {
 
     private String profile;
 
+    private String phoneNumber;
+
     @Builder.Default
     private float rating = 0f;
 
