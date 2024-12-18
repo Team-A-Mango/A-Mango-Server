@@ -19,11 +19,13 @@ public enum CustomErrorCode {
     EXIST_EMAIL(HttpStatus.BAD_REQUEST, "이미 존재하는 이메일 입니다."),
     REFRESH_TOKEN_NOT_FOUND(HttpStatus.BAD_REQUEST, "Refresh 토큰을 찾을 수 없습니다."),
     VALIDATION_FAILED(HttpStatus.BAD_REQUEST, "유효하지 않는 요청 형식입니다."),
+    NOT_MATCH_USER(HttpStatus.BAD_REQUEST, "해당 자원에 접근할 권한이 없습니다."),
 
     FILE_CREATE_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "파일 경로를 찾을 수 없습니다."),
     FILE_PROCESSING_ERROR(HttpStatus.BAD_REQUEST, "처리 할 수 없는 파일입니다."),
 
     NOT_FOUND_PRODUCT(HttpStatus.NOT_FOUND,"해당 상품을 찾을 수 없습니다."),
+    ALREADY_ORDER_STATUS(HttpStatus.BAD_REQUEST, "이미 처리 된 상품입니다."),
 
     PRODUCT_ALREADY_TRADED(HttpStatus.BAD_REQUEST, "이미 거래된 상품입니다.")
     ;
