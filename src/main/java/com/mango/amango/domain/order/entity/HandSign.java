@@ -6,11 +6,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum HandSign {
-    NULL(0),
-    CALL(1),
-    ROCK(2),
-    PEACE(3),
-    OK(4);
+    CALL("Call"),
+    ROCK("rock"),
+    PEACE("peace"),
+    OK("Ok");
 
-    private final int value;
+    private final String value;
 }
