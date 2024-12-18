@@ -6,6 +6,7 @@ import com.mango.amango.domain.order.util.OrderConverter;
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.exception.NotFoundProductException;
 import com.mango.amango.domain.product.exception.ProductAlreadyTradedException;
+import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.BuyProductService;
 import com.mango.amango.domain.user.entity.User;
@@ -23,7 +24,7 @@ public class BuyProductServiceImpl implements BuyProductService {
     private final UserService userService;
     private final OrderRepository orderRepository;
 
-    public void execute(Long productId) {
+    public void execute(Long productId, OrderProductReq request) {
         User user = userService.getCurrentUser();
 
         Product product = productRepository.findById(productId)
@@ -32,7 +33,7 @@ public class BuyProductServiceImpl implements BuyProductService {
         if (orderRepository.existsByProductId(product.getId())) {
             throw new ProductAlreadyTradedException();
         } else {
-            Order order = OrderConverter.toEntity(product, user);
+            Order order = OrderConverter.toEntity(product, user ,request.handSign());
             orderRepository.save(order);
         }
     }

@@ -25,4 +25,7 @@ public class Order extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private User user;
+
+    @Enumerated(EnumType.STRING)
+    private HandSign handSign;
 }
