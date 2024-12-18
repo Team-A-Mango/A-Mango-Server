@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -25,6 +26,7 @@ public class SecurityConfig {
     public static final String[] PERMITTED_URI = {"/auth", "/auth/login"};
     private final JwtService jwtService;
     private final UserService userService;
+    private final AuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -53,7 +55,8 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService, userService),
                         UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new CustomExceptionFilter(),
-                        JwtAuthenticationFilter.class);
+                        JwtAuthenticationFilter.class)
+                .exceptionHandling((exception) -> exception.authenticationEntryPoint(authenticationEntryPoint))
         ;
 
         return http.build();
