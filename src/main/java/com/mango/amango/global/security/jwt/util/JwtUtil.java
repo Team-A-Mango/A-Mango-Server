@@ -37,6 +37,22 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(encodedKey.getBytes(StandardCharsets.UTF_8));
     }
 
+    public static String toBearerToken(String token) {
+        return "Bearer " + token;
+    }
+
+    public static String extractBearerToken(String token) {
+        if (token == null) {
+            return null;
+        }
+
+        if (!token.startsWith("Bearer ")) {
+            throw new CustomException(CustomErrorCode.MALFORMED_TOKEN);
+        }
+
+        return token.substring(7);
+    }
+
     private static String encodedToBase64(String secretKey) {
         return Base64.getEncoder().encodeToString(secretKey.getBytes());
     }

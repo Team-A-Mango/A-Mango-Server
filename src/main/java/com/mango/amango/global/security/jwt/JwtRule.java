@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum JwtRule {
-    ACCESS_PREFIX("Authentication"),
+    ACCESS_PREFIX("Authorization"),
     REFRESH_PREFIX("Refresh-Token");
 
     private final String value;
