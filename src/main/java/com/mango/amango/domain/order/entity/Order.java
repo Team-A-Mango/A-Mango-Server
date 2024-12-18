@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import static com.mango.amango.domain.order.entity.OrderStatus.*;
+
 @Entity
 @Getter
 @Builder
@@ -28,4 +30,12 @@ public class Order extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private HandSign handSign;
+
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus = PENDING;
+
+    public void updateOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

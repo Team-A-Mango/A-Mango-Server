@@ -4,10 +4,7 @@ import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq
 import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
-import com.mango.amango.domain.product.service.BuyProductService;
-import com.mango.amango.domain.product.service.CreateProductService;
-import com.mango.amango.domain.product.service.GetProductService;
-import com.mango.amango.domain.product.service.FindAllProductService;
+import com.mango.amango.domain.product.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,7 @@ public class ProductController {
     private final GetProductService getProductService;
     private final FindAllProductService findAllProductService;
     private final BuyProductService buyProductService;
+    private final StockProductService stockProductService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -50,10 +48,16 @@ public class ProductController {
 
     }
 
-    @PostMapping("/{productId}")
+    @PostMapping("/{productId}/buy")
     public ResponseEntity<Void> orderProduct(@PathVariable Long productId,
                                              @RequestBody OrderProductReq request) {
         buyProductService.execute(productId, request);
         return ResponseEntity.status(CREATED).build();
+    }
+
+    @PostMapping("/{productId}/stock")
+    public ResponseEntity<Void> stockProduct(@PathVariable Long productId) {
+        stockProductService.execute(productId);
+        return ResponseEntity.ok().build();
     }
 }
