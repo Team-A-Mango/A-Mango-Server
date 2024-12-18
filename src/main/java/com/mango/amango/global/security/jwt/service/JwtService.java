@@ -35,10 +35,12 @@ public class JwtService {
     private final JwtProperties jwtProperties;
 
     public String generateAccessToken(User requestUser) {
-        return JwtGenerator.generateAccessToken(
-                jwtProperties.getAccessSecret(),
-                jwtProperties.getAccessExpiration(),
-                requestUser);
+        return JwtUtil.toBearerToken(
+                JwtGenerator.generateAccessToken(
+                        jwtProperties.getAccessSecret(),
+                        jwtProperties.getAccessExpiration(),
+                        requestUser)
+        );
     }
 
     @Transactional
@@ -49,7 +51,7 @@ public class JwtService {
                 requestUser);
 
         refreshTokenRepository.save(new RefreshToken(requestUser.getNickname(), refreshToken));
-        return refreshToken;
+        return JwtUtil.toBearerToken(refreshToken);
     }
 
     public TokenRes generateTokenResponse(User requestUser) {
@@ -62,7 +64,8 @@ public class JwtService {
     }
 
     public String resolveTokenFromHeader(HttpServletRequest request, JwtRule headerPrefix) {
-        return request.getHeader(headerPrefix.getValue());
+        return JwtUtil.extractBearerToken(
+                request.getHeader(headerPrefix.getValue()));
     }
 
     public boolean validateAccessToken(String token) {
