@@ -1,6 +1,7 @@
 package com.mango.amango.domain.product.presentation;
 
 import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
+import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.service.BuyProductService;
@@ -50,8 +51,9 @@ public class ProductController {
     }
 
     @PostMapping("/{productId}")
-    public ResponseEntity<Void> orderProduct(@PathVariable Long productId) {
-        buyProductService.execute(productId);
+    public ResponseEntity<Void> orderProduct(@PathVariable Long productId,
+                                             @RequestBody OrderProductReq request) {
+        buyProductService.execute(productId, request);
         return ResponseEntity.status(CREATED).build();
     }
 }
