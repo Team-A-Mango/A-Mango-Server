@@ -15,7 +15,7 @@ spring:
       password: ${REDIS_PASSWORD}
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MariaDBDialect
     properties:
       hibernate:
         show_sql: true
@@ -23,19 +23,6 @@ spring:
         hbm2ddl:
           auto: update
     show-sql: true
-
-  mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          timeout: 5000
-          starttls:
-            enable: true
 
 jwt:
   access-secret: ${ACCESS_SECRET}
