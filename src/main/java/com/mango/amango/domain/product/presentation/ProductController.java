@@ -50,7 +50,7 @@ public class ProductController {
 
     }
 
-    @PostMapping("/{productId}")
+    @PostMapping("/{productId}/buy")
     public ResponseEntity<Void> orderProduct(@PathVariable Long productId,
                                              @RequestBody OrderProductReq request) {
         buyProductService.execute(productId, request);
