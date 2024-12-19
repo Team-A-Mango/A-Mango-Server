@@ -46,7 +46,7 @@ public class SecurityConfig {
 
                         .requestMatchers(POST, "/inquiry/**").hasAuthority(USER.getKey())
 
-                        .requestMatchers(GET, "/my").authenticated()
+                        .requestMatchers(GET, "/my/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)

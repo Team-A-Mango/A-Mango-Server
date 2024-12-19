@@ -1,6 +1,8 @@
 package com.mango.amango.domain.user.util;
 
 import com.mango.amango.domain.product.entity.Product;
+import com.mango.amango.domain.user.entity.User;
+import com.mango.amango.domain.user.presentation.dto.response.GetMyInfoRes;
 import com.mango.amango.domain.user.presentation.dto.response.GetMyOrdersRes;
 
 import java.util.List;
@@ -32,6 +34,15 @@ public abstract class UserConverter {
                 .price(product.getPrice())
                 .like(product.getLikes())
                 .imageUrl(product.getImageUrl())
+                .build();
+    }
+
+    public static GetMyInfoRes toUserDto(User user) {
+        return GetMyInfoRes.builder()
+                .email(user.getEmail())
+                .phone(user.getPhoneNumber())
+                .nickname(user.getNickname())
+                .profile(user.getProfile())
                 .build();
     }
 }
