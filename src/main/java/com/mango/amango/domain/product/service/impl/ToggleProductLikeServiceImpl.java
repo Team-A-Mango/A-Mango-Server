@@ -30,13 +30,19 @@ public class ToggleProductLikeServiceImpl implements ToggleProductLikeService {
 
         ProductLike like = productLikeRepository.findByProductIdAndUserId(product.getId(), user.getId());
 
+        boolean check;
         if (like != null) {
             delete(like, product);
+            check = false;
         } else {
             save(product, user);
+            check = true;
         }
 
-        return new ToggleLikeRes(product.getLikes());
+        return ToggleLikeRes.builder()
+                .likes(product.getLikes())
+                .check(check)
+                .build();
     }
 
     private void save (Product product, User user) {
