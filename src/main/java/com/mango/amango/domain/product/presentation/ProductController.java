@@ -26,6 +26,7 @@ public class ProductController {
     private final BuyProductService buyProductService;
     private final StockProductService stockProductService;
     private final ProductCompletedService productCompletedService;
+    private final ToggleProductLikeService toggleProductLikeService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -66,5 +67,11 @@ public class ProductController {
     public ResponseEntity<Void> completedProduct(@PathVariable Long productId) {
         productCompletedService.execute(productId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{productId}/like")
+    public ResponseEntity<Void> toggleProductLike(@PathVariable Long productId) {
+        toggleProductLikeService.execute(productId);
+        return ResponseEntity.status(CREATED).build();
     }
 }
