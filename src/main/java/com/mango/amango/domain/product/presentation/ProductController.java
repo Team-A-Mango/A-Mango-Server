@@ -65,13 +65,13 @@ public class ProductController {
         return ResponseEntity.status(CREATED).build();
     }
 
-    @PostMapping("/{productId}/stock")
+    @PatchMapping("/{productId}/stock")
     public ResponseEntity<Void> stockProduct(@PathVariable Long productId) {
         stockProductService.execute(productId);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{productId}")
+    @PatchMapping("/{productId}/complete")
     public ResponseEntity<Void> completedProduct(@PathVariable Long productId) {
         productCompletedService.execute(productId);
         return ResponseEntity.noContent().build();
