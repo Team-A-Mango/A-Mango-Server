@@ -19,7 +19,7 @@ public class FindAllProductServiceImpl implements FindAllProductService {
 
     @Override
     public List<FindAllProductRes> execute() {
-        return productRepository.findAll().stream()
+        return productRepository.findByIsSoldFalse().stream()
                 .map(ProductConverter::toFindAllProductRes)
                 .toList();
     }
