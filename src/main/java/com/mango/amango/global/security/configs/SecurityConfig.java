@@ -33,6 +33,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(DELETE, "/auth").authenticated()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(POST, "/email").permitAll()
@@ -40,6 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(GET, "/product/**").permitAll()
                         .requestMatchers(POST, "/product").hasAuthority(USER.getKey())
                         .requestMatchers(POST, "/product/**").hasAuthority(USER.getKey())
+                        .requestMatchers(PATCH, "/product/**").hasAuthority(USER.getKey())
 
                         .requestMatchers(POST, "/inquiry/**").hasAuthority(USER.getKey())
 

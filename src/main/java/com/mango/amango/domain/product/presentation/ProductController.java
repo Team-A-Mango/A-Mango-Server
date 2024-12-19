@@ -25,6 +25,7 @@ public class ProductController {
     private final FindAllProductService findAllProductService;
     private final BuyProductService buyProductService;
     private final StockProductService stockProductService;
+    private final ProductCompletedService productCompletedService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -59,5 +60,11 @@ public class ProductController {
     public ResponseEntity<Void> stockProduct(@PathVariable Long productId) {
         stockProductService.execute(productId);
         return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{productId}")
+    public ResponseEntity<Void> completedProduct(@PathVariable Long productId) {
+        productCompletedService.execute(productId);
+        return ResponseEntity.noContent().build();
     }
 }
