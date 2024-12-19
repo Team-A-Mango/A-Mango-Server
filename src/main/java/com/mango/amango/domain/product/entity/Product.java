@@ -35,4 +35,11 @@ public class Product extends BaseEntity {
     @Builder.Default
     private Integer likes = 0;
 
+    public void increaseLikes() {
+        likes++;
+    }
+
+    public void decreaseLikes() {
+        likes--;
+    }
 }
