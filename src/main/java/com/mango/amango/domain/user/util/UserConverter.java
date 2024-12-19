@@ -17,10 +17,21 @@ public abstract class UserConverter {
                 .build();
     }
 
-    public static GetMyOrdersRes toDtoRes(List<GetMyOrdersRes.MyOrders> sale, List<GetMyOrdersRes.MyOrders> purchase){
+    public static GetMyOrdersRes toDtoRes(List<GetMyOrdersRes.MyOrders> sale, List<GetMyOrdersRes.MyOrders> purchase, List<GetMyOrdersRes.MyLikes> likes){
         return GetMyOrdersRes.builder()
                 .sale(sale)
                 .purchase(purchase)
+                .likes(likes)
+                .build();
+    }
+
+    public static GetMyOrdersRes.MyLikes toLikeDto(Product product) {
+        return GetMyOrdersRes.MyLikes.builder()
+                .productId(product.getId())
+                .title(product.getTitle())
+                .price(product.getPrice())
+                .like(product.getLikes())
+                .imageUrl(product.getImageUrl())
                 .build();
     }
 }
