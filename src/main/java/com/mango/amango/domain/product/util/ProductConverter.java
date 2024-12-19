@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class ProductConverter {
 
-    public static GetProductRes toGetProductRes(Product product, List<GetProductRes.GetInquiry> inquiries) {
+    public static GetProductRes toGetProductRes(Product product, List<GetProductRes.GetInquiry> inquiries, boolean check) {
         return GetProductRes.builder()
                 .productId(product.getId())
                 .title(product.getTitle())
@@ -18,6 +18,8 @@ public abstract class ProductConverter {
                 .profileImg(product.getUser().getProfile())
                 .imageUrl(product.getImageUrl())
                 .isSold(product.getIsSold())
+                .likes(product.getLikes())
+                .check(check)
                 .inquiries(inquiries)
                 .build();
     }

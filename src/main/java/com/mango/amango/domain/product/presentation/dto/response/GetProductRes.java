@@ -14,6 +14,8 @@ public record GetProductRes (
         String imageUrl,
         String profileImg,
         Boolean isSold,
+        Integer likes,
+        boolean check,
         List<GetInquiry> inquiries
 ) {
     @Builder
