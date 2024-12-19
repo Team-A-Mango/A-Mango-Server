@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class SendEmailEvent {
+public class SendMessageEvent {
     private final String fromPhoneNumber;
     private final String message;
 }
