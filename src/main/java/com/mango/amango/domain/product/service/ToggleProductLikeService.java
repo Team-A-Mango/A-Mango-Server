@@ -1,5 +1,7 @@
 package com.mango.amango.domain.product.service;
 
+import com.mango.amango.domain.product.presentation.dto.response.ToggleLikeRes;
+
 public interface ToggleProductLikeService {
-    void execute(Long productId);
+    ToggleLikeRes execute(Long productId);
 }
