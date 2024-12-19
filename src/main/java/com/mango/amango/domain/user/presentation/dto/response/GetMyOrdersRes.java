@@ -7,7 +7,8 @@ import java.util.List;
 @Builder
 public record GetMyOrdersRes(
         List<MyOrders> sale,
-        List<MyOrders> purchase
+        List<MyOrders> purchase,
+        List<MyLikes> likes
 ) {
     @Builder
     public record MyOrders(
@@ -17,4 +18,14 @@ public record GetMyOrdersRes(
             Long price,
             Integer like
     ) {}
+
+    @Builder
+    public record MyLikes(
+            Long productId,
+            String title,
+            String imageUrl,
+            Long price,
+            Integer like
+    ) {
+    }
 }
