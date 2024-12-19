@@ -24,6 +24,7 @@ public class ProductController {
     private final CreateProductService createProductService;
     private final GetProductService getProductService;
     private final FindAllProductService findAllProductService;
+    private final DeleteProductService deleteProductService;
     private final BuyProductService buyProductService;
     private final StockProductService stockProductService;
     private final ProductCompletedService productCompletedService;
@@ -49,6 +50,12 @@ public class ProductController {
         List<FindAllProductRes> res = findAllProductService.execute();
         return ResponseEntity.ok(res);
 
+    }
+
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
+        deleteProductService.execute(productId);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{productId}/buy")
