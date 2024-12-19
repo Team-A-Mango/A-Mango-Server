@@ -4,6 +4,7 @@ import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq
 import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
+import com.mango.amango.domain.product.presentation.dto.response.ToggleLikeRes;
 import com.mango.amango.domain.product.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -70,8 +71,8 @@ public class ProductController {
     }
 
     @PatchMapping("/{productId}/like")
-    public ResponseEntity<Void> toggleProductLike(@PathVariable Long productId) {
-        toggleProductLikeService.execute(productId);
-        return ResponseEntity.status(CREATED).build();
+    public ResponseEntity<ToggleLikeRes> toggleProductLike(@PathVariable Long productId) {
+        ToggleLikeRes res = toggleProductLikeService.execute(productId);
+        return ResponseEntity.ok(res);
     }
 }

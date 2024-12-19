@@ -3,6 +3,7 @@ package com.mango.amango.domain.product.service.impl;
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.entity.ProductLike;
 import com.mango.amango.domain.product.exception.NotFoundProductException;
+import com.mango.amango.domain.product.presentation.dto.response.ToggleLikeRes;
 import com.mango.amango.domain.product.repository.ProductLikeRepository;
 import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.ToggleProductLikeService;
@@ -21,7 +22,7 @@ public class ToggleProductLikeServiceImpl implements ToggleProductLikeService {
     private final ProductLikeRepository productLikeRepository;
     private final UserService userService;
 
-    public void execute(Long productId) {
+    public ToggleLikeRes execute(Long productId) {
         User user = userService.getCurrentUser();
 
         Product product = productRepository.findById(productId)
@@ -35,6 +36,7 @@ public class ToggleProductLikeServiceImpl implements ToggleProductLikeService {
             save(product, user);
         }
 
+        return new ToggleLikeRes(product.getLikes());
     }
 
     private void save (Product product, User user) {
