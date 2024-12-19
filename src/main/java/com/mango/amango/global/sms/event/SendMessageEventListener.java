@@ -16,21 +16,18 @@ import static com.mango.amango.global.sms.PhoneUtil.*;
 
 @Component
 @RequiredArgsConstructor
-public class SendEmailEventListener {
+public class SendMessageEventListener {
 
     private final DefaultMessageService messageService;
     private final CoolSmsProperties coolSmsProperties;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @TransactionalEventListener
-    public void sendEmail(SendEmailEvent sendEmailEvent) throws NurigoMessageNotReceivedException, NurigoEmptyResponseException, NurigoUnknownException {
+    public void sendMessage(SendMessageEvent sendMessageEvent) throws NurigoMessageNotReceivedException, NurigoEmptyResponseException, NurigoUnknownException {
         Message message = new Message();
-        System.out.println(formatPhoneNumber(coolSmsProperties.getToPhoneNumber()));
-        message.setTo(formatPhoneNumber(coolSmsProperties.getToPhoneNumber()));
-        System.out.println(formatPhoneNumber(sendEmailEvent.getFromPhoneNumber()));
-        message.setFrom(formatPhoneNumber(sendEmailEvent.getFromPhoneNumber()));
-        System.out.println(sendEmailEvent.getMessage());
-        message.setText(sendEmailEvent.getMessage());
+        message.setFrom(formatPhoneNumber(coolSmsProperties.getToPhoneNumber()));
+        message.setTo(formatPhoneNumber(sendMessageEvent.getFromPhoneNumber()));
+        message.setText(sendMessageEvent.getMessage());
 
 
         messageService.send(message);
