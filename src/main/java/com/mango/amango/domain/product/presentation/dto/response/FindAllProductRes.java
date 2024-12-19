@@ -13,6 +13,8 @@ public record FindAllProductRes(
 
     Long price,
 
-    Integer like
+    Integer like,
+
+    Boolean isSold
 ) {
 }
