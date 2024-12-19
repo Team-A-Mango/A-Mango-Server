@@ -24,6 +24,7 @@ public class ProductController {
     private final CreateProductService createProductService;
     private final GetProductService getProductService;
     private final FindAllProductService findAllProductService;
+    private final DeleteProductService deleteProductService;
     private final BuyProductService buyProductService;
     private final StockProductService stockProductService;
     private final ProductCompletedService productCompletedService;
@@ -51,6 +52,12 @@ public class ProductController {
 
     }
 
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
+        deleteProductService.execute(productId);
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/{productId}/buy")
     public ResponseEntity<Void> orderProduct(@PathVariable Long productId,
                                              @RequestBody OrderProductReq request) {
@@ -58,13 +65,13 @@ public class ProductController {
         return ResponseEntity.status(CREATED).build();
     }
 
-    @PostMapping("/{productId}/stock")
+    @PatchMapping("/{productId}/stock")
     public ResponseEntity<Void> stockProduct(@PathVariable Long productId) {
         stockProductService.execute(productId);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/{productId}")
+    @PatchMapping("/{productId}/complete")
     public ResponseEntity<Void> completedProduct(@PathVariable Long productId) {
         productCompletedService.execute(productId);
         return ResponseEntity.noContent().build();
