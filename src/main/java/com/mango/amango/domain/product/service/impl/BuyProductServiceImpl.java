@@ -33,6 +33,7 @@ public class BuyProductServiceImpl implements BuyProductService {
         if (orderRepository.existsByProductId(product.getId())) {
             throw new ProductAlreadyTradedException();
         } else {
+            product.markAsSold();
             Order order = OrderConverter.toEntity(product, user ,request.handSign());
             orderRepository.save(order);
         }

@@ -17,6 +17,7 @@ public abstract class ProductConverter {
                 .author(product.getUser().getNickname())
                 .profileImg(product.getUser().getProfile())
                 .imageUrl(product.getImageUrl())
+                .isSold(product.getIsSold())
                 .inquiries(inquiries)
                 .build();
     }
@@ -28,6 +29,7 @@ public abstract class ProductConverter {
                 .imageUrl(product.getImageUrl())
                 .price(product.getPrice())
                 .like(product.getLikes())
+                .isSold(product.getIsSold())
                 .build();
     }
 }

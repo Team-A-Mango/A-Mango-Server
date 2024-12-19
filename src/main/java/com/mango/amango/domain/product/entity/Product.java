@@ -34,6 +34,9 @@ public class Product extends BaseEntity {
 
     @Builder.Default
     private Integer likes = 0;
+    
+    @Builder.Default
+    private Boolean isSold = false;
 
     public void increaseLikes() {
         likes++;
@@ -41,5 +44,9 @@ public class Product extends BaseEntity {
 
     public void decreaseLikes() {
         likes--;
+    }
+    
+    public void markAsSold() {
+        isSold = true;
     }
 }

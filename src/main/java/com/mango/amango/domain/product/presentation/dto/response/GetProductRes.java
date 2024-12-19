@@ -13,6 +13,7 @@ public record GetProductRes (
         String author,
         String imageUrl,
         String profileImg,
+        Boolean isSold,
         List<GetInquiry> inquiries
 ) {
     @Builder
