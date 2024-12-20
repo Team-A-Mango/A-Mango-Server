@@ -26,6 +26,7 @@ public enum CustomErrorCode {
 
     NOT_FOUND_PRODUCT(HttpStatus.NOT_FOUND,"해당 상품을 찾을 수 없습니다."),
     ALREADY_ORDER_STATUS(HttpStatus.BAD_REQUEST, "이미 처리 된 상품입니다."),
+    MATCH_PRODUCT_SUBMIT_USER_AND_BUY_USER(HttpStatus.BAD_REQUEST, "자신의 상품은 구매할 수 없습니다."),
 
     PRODUCT_ALREADY_TRADED(HttpStatus.I_AM_A_TEAPOT, "이미 거래된 상품입니다."),
     NOT_FOUND_ORDER(HttpStatus.NOT_FOUND, "해당 거래를 찾을 수 없습니다."),
