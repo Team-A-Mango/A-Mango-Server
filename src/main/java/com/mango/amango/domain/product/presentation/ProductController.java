@@ -4,6 +4,7 @@ import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq
 import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
+import com.mango.amango.domain.product.presentation.dto.response.SearchProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.ToggleLikeRes;
 import com.mango.amango.domain.product.service.*;
 import jakarta.validation.Valid;
@@ -29,6 +30,7 @@ public class ProductController {
     private final StockProductService stockProductService;
     private final ProductCompletedService productCompletedService;
     private final ToggleProductLikeService toggleProductLikeService;
+    private final SearchProductService searchProductService;
 
     @PostMapping
     public ResponseEntity<Void> createProduct(
@@ -80,6 +82,12 @@ public class ProductController {
     @PatchMapping("/{productId}/like")
     public ResponseEntity<ToggleLikeRes> toggleProductLike(@PathVariable Long productId) {
         ToggleLikeRes res = toggleProductLikeService.execute(productId);
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<SearchProductRes>> searchProducts(@RequestParam String keyword) {
+        List<SearchProductRes> res = searchProductService.execute(keyword);
         return ResponseEntity.ok(res);
     }
 }
