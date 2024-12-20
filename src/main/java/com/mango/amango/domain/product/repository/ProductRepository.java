@@ -13,4 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p WHERE p.isSold = false ")
     List<Product> findByIsSoldFalse();
+
+    List<Product> findByTitleContaining(String keyword);
 }
