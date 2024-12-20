@@ -3,6 +3,7 @@ package com.mango.amango.domain.product.util;
 import com.mango.amango.domain.product.entity.Product;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
+import com.mango.amango.domain.product.presentation.dto.response.SearchProductRes;
 
 import java.util.List;
 
@@ -32,6 +33,17 @@ public abstract class ProductConverter {
                 .price(product.getPrice())
                 .like(product.getLikes())
                 .isSold(product.getIsSold())
+                .build();
+    }
+
+    public static SearchProductRes toSearchProductRes(Product product) {
+        return SearchProductRes.builder()
+                .title(product.getTitle())
+                .productId(product.getId())
+                .imageUrl(product.getImageUrl())
+                .isSold(product.getIsSold())
+                .price(product.getPrice())
+                .like(product.getLikes())
                 .build();
     }
 }
