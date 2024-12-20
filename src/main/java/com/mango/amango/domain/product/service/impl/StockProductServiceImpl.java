@@ -30,7 +30,7 @@ public class StockProductServiceImpl implements StockProductService {
         Order order = orderRepository.findByProductId(productId)
                 .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_FOUND_PRODUCT));
 
-        if (!order.getUser().equals(currentUser)) {
+        if (!order.getProduct().getUser().equals(currentUser)) {
             throw new CustomException(CustomErrorCode.NOT_MATCH_USER);
         }
         if (!order.getOrderStatus().equals(PENDING)) {

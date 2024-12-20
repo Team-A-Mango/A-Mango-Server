@@ -11,6 +11,8 @@ import com.mango.amango.domain.product.repository.ProductRepository;
 import com.mango.amango.domain.product.service.BuyProductService;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;
+import com.mango.amango.global.exception.CustomErrorCode;
+import com.mango.amango.global.exception.CustomException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,17 +27,20 @@ public class BuyProductServiceImpl implements BuyProductService {
     private final OrderRepository orderRepository;
 
     public void execute(Long productId, OrderProductReq request) {
-        User user = userService.getCurrentUser();
+        User currentUser = userService.getCurrentUser();
 
         Product product = productRepository.findById(productId)
                 .orElseThrow(NotFoundProductException::new);
 
+        if (product.getUser().equals(currentUser)) {
+            throw new CustomException(CustomErrorCode.MATCH_PRODUCT_SUBMIT_USER_AND_BUY_USER);
+        }
         if (orderRepository.existsByProductId(product.getId())) {
             throw new ProductAlreadyTradedException();
-        } else {
-            product.markAsSold();
-            Order order = OrderConverter.toEntity(product, user ,request.handSign());
-            orderRepository.save(order);
         }
+
+        product.markAsSold();
+        Order order = OrderConverter.toEntity(product, currentUser, request.handSign());
+        orderRepository.save(order);
     }
 }
