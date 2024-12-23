@@ -11,8 +11,7 @@ import java.util.UUID;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByUserId(UUID userId);
 
-    @Query("SELECT p FROM Product p WHERE p.isSold = false ")
     List<Product> findByIsSoldFalse();
 
-    List<Product> findByTitleContaining(String keyword);
+    List<Product> findByTitleContainingAndIsSoldFalse(String keyword);
 }

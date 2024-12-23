@@ -18,7 +18,7 @@ public class SearchProductServiceImpl implements SearchProductService {
     private final ProductRepository productRepository;
 
     public List<SearchProductRes> execute(String keyword) {
-        return productRepository.findByTitleContaining(keyword)
+        return productRepository.findByTitleContainingAndIsSoldFalse(keyword)
                 .stream()
                 .map(ProductConverter::toSearchProductRes)
                 .toList();
