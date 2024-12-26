@@ -30,7 +30,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .nickname(request.nickName())
                 .password(passwordEncoder.encode(request.password()))
                 .phoneNumber(request.phone())
-                .faceImageUrl(s3ClientService.upload(image, ObjectCannedACL.BUCKET_OWNER_READ)
+                .faceImageUrl(s3ClientService.upload(image, ObjectCannedACL.PUBLIC_READ)
                         .orElseThrow(() -> new CustomException(CustomErrorCode.FILE_PROCESSING_ERROR)))
                 .build()
         );
