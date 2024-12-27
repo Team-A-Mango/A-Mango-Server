@@ -2,6 +2,7 @@ package com.mango.amango.domain.product.service.impl;
 
 import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.order.repository.OrderRepository;
+import com.mango.amango.domain.product.presentation.dto.request.StockProductReq;
 import com.mango.amango.domain.product.service.StockProductService;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;
@@ -25,7 +26,7 @@ public class StockProductServiceImpl implements StockProductService {
     private final ApplicationEventPublisher publisher;
 
     @Override
-    public void execute(Long productId) {
+    public void execute(Long productId, StockProductReq request) {
         User currentUser = userService.getCurrentUser();
         Order order = orderRepository.findByProductId(productId)
                 .orElseThrow(() -> new CustomException(CustomErrorCode.NOT_FOUND_PRODUCT));
@@ -37,7 +38,7 @@ public class StockProductServiceImpl implements StockProductService {
             throw new CustomException(CustomErrorCode.ALREADY_ORDER_STATUS);
         }
 
-        order.updateOrderStatus(STOCK);
+        order.stockProduct(request.storageNumber());
         String message = "보관함에 상품이 보관되어있습니다!\n빠른시일 내에 회수해 주세요";
         publisher.publishEvent(new SendMessageEvent(order.getUser().getPhoneNumber(), message));
     }
