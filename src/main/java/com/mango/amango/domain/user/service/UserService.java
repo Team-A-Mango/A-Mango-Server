@@ -33,4 +33,12 @@ public class UserService {
         return userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new CustomException(CustomErrorCode.INVALID_EMAIL));
     }
+
+    public Boolean existsUserByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public Boolean existsUserByNickname(String nickname) {
+        return userRepository.existsByNickname(nickname);
+    }
 }

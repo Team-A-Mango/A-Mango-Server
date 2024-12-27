@@ -17,6 +17,7 @@ public enum CustomErrorCode {
     MALFORMED_TOKEN(HttpStatus.BAD_REQUEST, "잘못된 토큰 형식 입니다."),
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 유저 입니다."),
     EXIST_EMAIL(HttpStatus.BAD_REQUEST, "이미 존재하는 이메일 입니다."),
+    EXIST_NICKNAME(HttpStatus.BAD_REQUEST, "이미 존재하는 이름 입니다."),
     REFRESH_TOKEN_NOT_FOUND(HttpStatus.BAD_REQUEST, "Refresh 토큰을 찾을 수 없습니다."),
     VALIDATION_FAILED(HttpStatus.BAD_REQUEST, "유효하지 않는 요청 형식입니다."),
     NOT_MATCH_USER(HttpStatus.BAD_REQUEST, "해당 자원에 접근할 권한이 없습니다."),

@@ -25,6 +25,13 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public void signUp(SignUpReq request, MultipartFile image) {
+        if (userService.existsUserByEmail(request.email())) {
+            throw new CustomException(CustomErrorCode.EXIST_EMAIL);
+        }
+        if (userService.existsUserByNickname(request.nickName())) {
+            throw new CustomException(CustomErrorCode.EXIST_NICKNAME);
+        }
+
         userService.saveUser(User.builder()
                 .email(request.email())
                 .nickname(request.nickName())
