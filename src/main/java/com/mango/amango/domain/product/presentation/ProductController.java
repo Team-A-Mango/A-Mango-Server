@@ -71,7 +71,7 @@ public class ProductController {
     @PatchMapping("/{productId}/stock")
     public ResponseEntity<Void> stockProduct(@PathVariable Long productId, @RequestBody StockProductReq request) {
         stockProductService.execute(productId, request);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{productId}/complete")

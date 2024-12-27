@@ -42,7 +42,7 @@ public class StockProductServiceImpl implements StockProductService {
         }
 
         order.stockProduct(request.storageNumber());
-        String message = "보관함에 상품이 보관되어있습니다!\n빠른시일 내에 회수해 주세요";
+        String message = request.storageNumber() + "번 보관함에 상품이 보관되어 있습니다!\n이른 시일 내에 회수해 주세요";
         publisher.publishEvent(new SendMessageEvent(order.getUser().getPhoneNumber(), message));
     }
 }
