@@ -37,6 +37,9 @@ public class StockProductServiceImpl implements StockProductService {
         if (!order.getOrderStatus().equals(PENDING)) {
             throw new CustomException(CustomErrorCode.ALREADY_ORDER_STATUS);
         }
+        if (orderRepository.existsByOrderStatusAndStorageNumber(STOCK, request.storageNumber())) {
+            throw new CustomException(CustomErrorCode.STORAGE_ALREADY_OCCUPIED);
+        }
 
         order.stockProduct(request.storageNumber());
         String message = "보관함에 상품이 보관되어있습니다!\n빠른시일 내에 회수해 주세요";

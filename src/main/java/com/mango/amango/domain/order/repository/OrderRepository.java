@@ -1,6 +1,7 @@
 package com.mango.amango.domain.order.repository;
 
 import com.mango.amango.domain.order.entity.Order;
+import com.mango.amango.domain.order.entity.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findAllByUserId(UUID userId);
 
     Optional<Order> findByProductIdAndUserId(Long productId, UUID userId);
+
+    boolean existsByOrderStatusAndStorageNumber(OrderStatus orderStatus, Integer storageNumber);
 }
