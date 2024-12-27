@@ -2,6 +2,7 @@ package com.mango.amango.domain.product.presentation;
 
 import com.mango.amango.domain.product.presentation.dto.request.CreateProductReq;
 import com.mango.amango.domain.product.presentation.dto.request.OrderProductReq;
+import com.mango.amango.domain.product.presentation.dto.request.StockProductReq;
 import com.mango.amango.domain.product.presentation.dto.response.GetProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.FindAllProductRes;
 import com.mango.amango.domain.product.presentation.dto.response.SearchProductRes;
@@ -68,9 +69,9 @@ public class ProductController {
     }
 
     @PatchMapping("/{productId}/stock")
-    public ResponseEntity<Void> stockProduct(@PathVariable Long productId) {
-        stockProductService.execute(productId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> stockProduct(@PathVariable Long productId, @RequestBody StockProductReq request) {
+        stockProductService.execute(productId, request);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{productId}/complete")
