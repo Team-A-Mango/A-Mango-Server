@@ -4,12 +4,16 @@ import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.order.util.OrderConverter;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;
+import com.mango.amango.global.exception.CustomErrorCode;
+import com.mango.amango.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.time.Duration;
 
 @Component
 @RequiredArgsConstructor
@@ -35,6 +39,8 @@ public class OrderClient {
                 .bodyValue(OrderConverter.toDto(user, order))
                 .retrieve()
                 .toBodilessEntity()
+                .timeout(Duration.ofSeconds(10))
+                .onErrorMap((e) -> new CustomException(CustomErrorCode.INTERNAL_SERVER_ERROR))
                 .block()
         ;
     }
