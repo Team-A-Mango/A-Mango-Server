@@ -35,6 +35,13 @@ public class Order extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = PENDING;
 
+    private Integer storageNumber;
+
+    public void stockProduct(Integer storageNumber) {
+        this.orderStatus = STOCK;
+        this.storageNumber = storageNumber;
+    }
+
     public void updateOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
