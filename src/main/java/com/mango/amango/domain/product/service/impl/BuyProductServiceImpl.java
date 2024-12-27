@@ -1,6 +1,5 @@
 package com.mango.amango.domain.product.service.impl;
 
-import com.mango.amango.domain.order.client.OrderClient;
 import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.order.repository.OrderRepository;
 import com.mango.amango.domain.order.util.OrderConverter;
@@ -26,7 +25,6 @@ public class BuyProductServiceImpl implements BuyProductService {
     private final ProductRepository productRepository;
     private final UserService userService;
     private final OrderRepository orderRepository;
-    private final OrderClient orderClient;
 
     public void execute(Long productId, OrderProductReq request) {
         User currentUser = userService.getCurrentUser();
@@ -44,6 +42,5 @@ public class BuyProductServiceImpl implements BuyProductService {
         product.markAsSold();
         Order order = OrderConverter.toEntity(product, currentUser, request.handSign());
         orderRepository.save(order);
-        orderClient.postOrderIdentity(request.handSign().getValue());
     }
 }

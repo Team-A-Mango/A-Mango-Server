@@ -1,11 +1,11 @@
 package com.mango.amango.domain.order.client.dto.request;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
 
-@Getter
-@RequiredArgsConstructor
-public final class PostOrderIdentityReq {
-    private final String image_url;
-    private final String hand_sign;
+@Builder
+public record PostOrderIdentityReq(
+        String image_url,
+        String hand_sign,
+        Integer storage_number
+) {
 }

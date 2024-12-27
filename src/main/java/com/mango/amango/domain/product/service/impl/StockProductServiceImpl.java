@@ -1,5 +1,6 @@
 package com.mango.amango.domain.product.service.impl;
 
+import com.mango.amango.domain.order.client.OrderClient;
 import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.order.repository.OrderRepository;
 import com.mango.amango.domain.product.presentation.dto.request.StockProductReq;
@@ -24,6 +25,7 @@ public class StockProductServiceImpl implements StockProductService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final ApplicationEventPublisher publisher;
+    private final OrderClient orderClient;
 
     @Override
     public void execute(Long productId, StockProductReq request) {
@@ -42,6 +44,7 @@ public class StockProductServiceImpl implements StockProductService {
         }
 
         order.stockProduct(request.storageNumber());
+        orderClient.postOrderIdentity(order);
         String message = request.storageNumber() + "번 보관함에 상품이 보관되어 있습니다!\n이른 시일 내에 회수해 주세요";
         publisher.publishEvent(new SendMessageEvent(order.getUser().getPhoneNumber(), message));
     }

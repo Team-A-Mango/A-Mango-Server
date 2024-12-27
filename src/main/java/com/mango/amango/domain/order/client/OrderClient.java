@@ -1,6 +1,7 @@
 package com.mango.amango.domain.order.client;
 
-import com.mango.amango.domain.order.client.dto.request.PostOrderIdentityReq;
+import com.mango.amango.domain.order.entity.Order;
+import com.mango.amango.domain.order.util.OrderConverter;
 import com.mango.amango.domain.user.entity.User;
 import com.mango.amango.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,12 @@ public class OrderClient {
                 .build();
     }
 
-    public void postOrderIdentity(String handSign) {
+    public void postOrderIdentity(Order order) {
         User user = userService.getCurrentUser();
 
         getWebClient().post()
                 .uri("/api/a-mango/face_recognition")
-                .bodyValue(new PostOrderIdentityReq(user.getFaceImageUrl(), handSign))
+                .bodyValue(OrderConverter.toDto(user, order))
                 .retrieve()
                 .toBodilessEntity()
                 .block()
