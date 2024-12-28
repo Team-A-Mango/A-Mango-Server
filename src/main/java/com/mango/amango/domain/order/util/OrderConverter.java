@@ -1,5 +1,6 @@
 package com.mango.amango.domain.order.util;
 
+import com.mango.amango.domain.order.client.dto.request.PostOrderIdentityReq;
 import com.mango.amango.domain.order.entity.HandSign;
 import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.product.entity.Product;
@@ -12,6 +13,14 @@ public abstract class OrderConverter {
                 .product(product)
                 .user(user)
                 .handSign(handSign)
+                .build();
+    }
+
+    public static PostOrderIdentityReq toDto(User user, Order order) {
+        return PostOrderIdentityReq.builder()
+                .imageUrl(user.getFaceImageUrl())
+                .handSign(order.getHandSign().getValue())
+                .storageRoomNumber(String.valueOf(order.getStorageNumber()))
                 .build();
     }
 }

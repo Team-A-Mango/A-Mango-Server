@@ -43,3 +43,6 @@ coolsms:
     key: ${SMS_KEY}
     secret: ${SMS_SECRET_KEY}
     phoneNumber: ${SMS_PHONE_NUMBER}
+
+ai-server:
+  base-url: ${AI_SERVER_BASE_URL}
