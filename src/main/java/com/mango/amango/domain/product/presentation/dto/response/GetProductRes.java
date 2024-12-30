@@ -15,6 +15,7 @@ public record GetProductRes (
         String profileImg,
         Boolean isSold,
         Integer likes,
+        String account,
         boolean check,
         List<GetInquiry> inquiries
 ) {
