@@ -27,6 +27,7 @@ public class CreateProductServiceImpl implements CreateProductService {
         productRepository.save(Product.builder()
                 .title(request.title())
                 .description(request.description())
+                .account(request.account())
                 .price(request.price())
                 .imageUrl(s3ClientService.upload(image, PUBLIC_READ).orElse(null))
                 .user(userService.getCurrentUser())

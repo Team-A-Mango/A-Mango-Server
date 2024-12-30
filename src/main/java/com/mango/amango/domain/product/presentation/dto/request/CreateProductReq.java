@@ -11,7 +11,10 @@ public record CreateProductReq(
         String description,
 
         @NotNull(message = "가격은 필수 입력 값 입니다.")
-        Long price
+        Long price,
+
+        @NotNull(message = "계좌는 필수 입력 값 입니다.")
+        String account
 ) {
 
 }
