@@ -26,7 +26,8 @@ public enum CustomErrorCode {
     FILE_PROCESSING_ERROR(HttpStatus.BAD_REQUEST, "처리 할 수 없는 파일입니다."),
 
     NOT_FOUND_PRODUCT(HttpStatus.NOT_FOUND,"해당 상품을 찾을 수 없습니다."),
-    ALREADY_ORDER_STATUS(HttpStatus.BAD_REQUEST, "이미 처리 된 상품입니다."),
+    ALREADY_STOCK_ORDER_STATUS(HttpStatus.BAD_REQUEST, "이미 저장 된 상품입니다."),
+    ALREADY_FINISHED_ORDER_STATUS(HttpStatus.BAD_REQUEST, "이미 거래 완료 된 상품입니다."),
     MATCH_PRODUCT_SUBMIT_USER_AND_BUY_USER(HttpStatus.BAD_REQUEST, "자신의 상품은 구매할 수 없습니다."),
     STORAGE_ALREADY_OCCUPIED(HttpStatus.BAD_REQUEST, "이미 사용중인 보관함 입니다."),
 

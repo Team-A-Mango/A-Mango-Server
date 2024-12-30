@@ -36,8 +36,11 @@ public class StockProductServiceImpl implements StockProductService {
         if (!order.getProduct().getUser().equals(currentUser)) {
             throw new CustomException(CustomErrorCode.NOT_MATCH_USER);
         }
-        if (!order.getOrderStatus().equals(PENDING)) {
-            throw new CustomException(CustomErrorCode.ALREADY_ORDER_STATUS);
+        if (order.getOrderStatus().equals(STOCK)) {
+            throw new CustomException(CustomErrorCode.ALREADY_STOCK_ORDER_STATUS);
+        }
+        if (order.getOrderStatus().equals(FINISHED)) {
+            throw new CustomException(CustomErrorCode.ALREADY_FINISHED_ORDER_STATUS);
         }
         if (orderRepository.existsByOrderStatusAndStorageNumber(STOCK, request.storageNumber())) {
             throw new CustomException(CustomErrorCode.STORAGE_ALREADY_OCCUPIED);
