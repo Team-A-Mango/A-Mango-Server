@@ -20,6 +20,7 @@ public abstract class ProductConverter {
                 .imageUrl(product.getImageUrl())
                 .isSold(product.getIsSold())
                 .likes(product.getLikes())
+                .account(product.getAccount())
                 .check(check)
                 .inquiries(inquiries)
                 .build();
