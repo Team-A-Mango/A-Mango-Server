@@ -16,9 +16,9 @@ public abstract class OrderConverter {
                 .build();
     }
 
-    public static PostOrderIdentityReq toDto(User user, Order order) {
+    public static PostOrderIdentityReq toDto(Order order) {
         return PostOrderIdentityReq.builder()
-                .imageUrl(user.getFaceImageUrl())
+                .imageUrl(order.getUser().getFaceImageUrl())
                 .handSign(order.getHandSign().getValue())
                 .storageRoomNumber(String.valueOf(order.getStorageNumber()))
                 .build();

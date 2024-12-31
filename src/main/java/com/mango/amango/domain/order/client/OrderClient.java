@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.mango.amango.domain.order.entity.Order;
 import com.mango.amango.domain.order.util.OrderConverter;
-import com.mango.amango.domain.user.entity.User;
-import com.mango.amango.domain.user.service.UserService;
 import com.mango.amango.global.exception.CustomErrorCode;
 import com.mango.amango.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +23,6 @@ public class OrderClient {
 
     @Value("${ai-server.base-url}")
     private String baseUrl;
-    private final UserService userService;
     private final WebClient.Builder webClientBuilder;
     private final ObjectMapper objectMapper;
 
@@ -43,11 +40,9 @@ public class OrderClient {
     }
 
     public void postOrderIdentity(Order order) {
-        User user = userService.getCurrentUser();
-
         getWebClient().post()
                 .uri("/api/a-mango/get_parameters")
-                .bodyValue(OrderConverter.toDto(user, order))
+                .bodyValue(OrderConverter.toDto(order))
                 .retrieve()
                 .toBodilessEntity()
                 .timeout(Duration.ofSeconds(5))
