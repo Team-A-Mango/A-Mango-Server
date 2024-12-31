@@ -43,11 +43,9 @@ public class OrderClient {
     }
 
     public void postOrderIdentity(Order order) {
-        User user = userService.getCurrentUser();
-
         getWebClient().post()
                 .uri("/api/a-mango/get_parameters")
-                .bodyValue(OrderConverter.toDto(user, order))
+                .bodyValue(OrderConverter.toDto(order))
                 .retrieve()
                 .toBodilessEntity()
                 .timeout(Duration.ofSeconds(5))
